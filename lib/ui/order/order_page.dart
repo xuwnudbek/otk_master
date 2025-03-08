@@ -95,6 +95,8 @@ class OrderPage extends StatelessWidget {
                               }
 
                               final order = provider.orders[index];
+                              final List sizes = order['order_model']?['sizes'] ?? [];
+                              final List submodels = order['order_model']?['submodels'] ?? [];
 
                               String status = order['status'] == "tailoring"
                                   ? "Tikilmoqda"
@@ -151,6 +153,7 @@ class OrderPage extends StatelessWidget {
                                     ),
                                     SizedBox(height: 8),
                                     // mato
+
                                     Row(
                                       children: [
                                         Text.rich(
@@ -168,6 +171,7 @@ class OrderPage extends StatelessWidget {
                                       ],
                                     ),
                                     SizedBox(height: 8),
+
                                     // status
                                     Row(
                                       children: [
@@ -190,76 +194,68 @@ class OrderPage extends StatelessWidget {
                                       ],
                                     ),
                                     SizedBox(height: 8),
+
                                     // submodellar
-                                    Row(
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        Text.rich(
+                                          TextSpan(
+                                            text: 'Submodellar:',
+                                            style: textTheme.bodyMedium,
+                                          ),
+                                        ),
+                                        Wrap(
+                                          spacing: 4,
+                                          runSpacing: 4,
                                           children: [
-                                            Text.rich(
-                                              TextSpan(
-                                                text: 'Submodellar:',
-                                                style: textTheme.bodyMedium,
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 4,
-                                              runSpacing: 4,
-                                              children: [
-                                                for (final submodel in order['order_model']?['submodels'] ?? [])
-                                                  Chip(
-                                                    padding: EdgeInsets.all(4),
-                                                    backgroundColor: AppColors.primary,
-                                                    label: Text(
-                                                      submodel?['submodel']?['name'] ?? 'Unknown',
-                                                      style: textTheme.bodyMedium?.copyWith(
-                                                        color: AppColors.light,
-                                                      ),
-                                                    ),
+                                            for (final submodel in order['order_model']?['submodels'] ?? [])
+                                              Chip(
+                                                padding: EdgeInsets.all(2),
+                                                backgroundColor: AppColors.primary,
+                                                label: Text(
+                                                  submodel?['submodel']?['name'] ?? 'Unknown',
+                                                  style: textTheme.bodyMedium?.copyWith(
+                                                    color: AppColors.light,
                                                   ),
-                                              ],
-                                            ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       ],
                                     ),
                                     SizedBox(height: 8),
-                                    Row(
+
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        Text.rich(
+                                          TextSpan(
+                                            text: 'O\'lchamlar:',
+                                            style: textTheme.bodyMedium,
+                                          ),
+                                        ),
+                                        Wrap(
+                                          spacing: 4,
                                           children: [
-                                            Text.rich(
-                                              TextSpan(
-                                                text: 'O\'lchamlar:',
-                                                style: textTheme.bodyMedium,
-                                              ),
-                                            ),
-                                            Wrap(
-                                              spacing: 4,
-                                              runSpacing: 4,
-                                              children: [
-                                                for (final size in order['order_model']?['sizes'] ?? [])
-                                                  Chip(
-                                                    padding: EdgeInsets.all(4),
-                                                    backgroundColor: AppColors.primary,
-                                                    label: Text(
-                                                      size['size']?['name'] ?? 'Unknown',
-                                                      style: textTheme.bodyMedium?.copyWith(
-                                                        color: AppColors.light,
-                                                      ),
-                                                    ),
+                                            for (final size in sizes)
+                                              Chip(
+                                                padding: EdgeInsets.all(2),
+                                                backgroundColor: AppColors.primary,
+                                                label: Text(
+                                                  size['size']?['name'] ?? 'Unknown',
+                                                  style: textTheme.bodyMedium?.copyWith(
+                                                    color: AppColors.light,
                                                   ),
-                                              ],
-                                            ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       ],
                                     ),
+
                                     SizedBox(height: 8),
                                     ...((order['order_model']?['submodels'] ?? []) as List).map((submodel) {
-                                      inspect(provider.groups);
-
                                       return DecoratedBox(
                                         decoration: BoxDecoration(
                                           border: Border(
