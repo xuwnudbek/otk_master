@@ -1,0 +1,25 @@
+{
+    "id": 513,
+    "submodel": {
+        "id": 476,
+        "name": "комбинезон"
+    },
+    "order": {
+        "id": 1284,
+        "name": "8з0125 1920",
+        "quantity": 1920,
+        "status": "tailoring",
+        "start_date": "2025-03-01 00:00:00",
+        "end_date": null,
+        "rasxod": "0",
+        "comment": null,
+        "price": 0
+    },
+    "model": {
+        "id": 441,
+        "name": "8з0125",
+        "rasxod": "32692.31"
+    },
+    "qualityChecksTrue": 10,
+    "qualityChecksFalse": 8
+}
