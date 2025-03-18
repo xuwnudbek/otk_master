@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
               elevation: 0,
               actions: [
                 IconButton(
-                  icon: Icon(Icons.logout_rounded),
+                  icon: Icon(Icons.exit_to_app),
                   onPressed: () async {
                     await provider.logout(context);
                   },

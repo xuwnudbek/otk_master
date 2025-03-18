@@ -23,8 +23,8 @@ class HomeProvider extends ChangeNotifier {
     },
     {
       'title': 'Buyurtmalar',
-      'icon': Icons.home_outlined,
-      'active_icon': Icons.home_rounded,
+      'icon': Icons.list_alt_outlined,
+      'active_icon': Icons.list_alt_rounded,
       "page": OrderPage(),
     },
   ];
@@ -55,7 +55,7 @@ class HomeProvider extends ChangeNotifier {
               onPressed: () {
                 Navigator.pop(context, true);
               },
-              child: Text('Ha'),
+              child: Text('Ha, albatta'),
             ),
           ],
         );
@@ -63,8 +63,7 @@ class HomeProvider extends ChangeNotifier {
     );
 
     if (res == true) {
-      StorageService.remove('token');
-      StorageService.remove('user');
+      StorageService.clear();
       Get.offAll(() => SplashPage());
     }
   }
